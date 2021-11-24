@@ -21,7 +21,7 @@ Discord handles to contact with questions about the protocol and their timezones
 * [Contract Scope Overview](#contract-scope-overview)
 * [Description of each contract in scope](#description-of-each-contract-in-scope)
 * [Technical Notes](#technical-notes)
-* [Known Issues / trade offs](#known-issues-trade-offs)
+* [Known Issues / trade offs](#known-issues--trade-offs)
 
 ## High level overview of the Malt protocol
 The goal of Malt is to maintain the price of the Malt token at $1 per Malt.
@@ -59,30 +59,30 @@ If the retained profit is not enough to return the price to $1 then an auction i
 
 | Contract Name                          | Lines of Code | Link to source           |
 | -------------------------------------- | ------------- | -------------- |
-| `AbstractRewardMine.sol`               | 185           | [AbstractRewardMine.sol]() |
-| `AuctionBurnReserveSkew.sol`           | 139           | [AuctionBurnReserveSkew.sol]() |
-| `AuctionEscapeHatch.sol`               | 174           | [AuctionEscapeHatch.sol]() |
-| `AuctionParticipant.sol`               | 95            | [AuctionParticipant.sol]() |
-| `AuctionPool.sol`                      | 123           | [AuctionPool.sol]() |
-| `Auction.sol`                          | 750           | [Auction.sol]() |
-| `Bonding.sol`                          | 252           | [Bonding.sol]() |
-| `DAO.sol`                              | 90            | [DAO.sol]() |
-| `DexHandlers/UniswapHandler.sol`       | 242           | [UniswapHandler.sol]() |
-| `ERC20VestedMine.sol`                  | 80            | [ERC20VestedMine.sol]() |
-| `LiquidityExtension.sol`               | 125           | [LiquidityExtension.sol]() |
-| `MaltDataLab.sol`                      | 222           | [MaltDataLab.sol]() |
-| `Malt.sol`                             | 53            | [Malt.sol]() |
-| `MiningService.sol`                    | 139           | [MiningService.sol]() |
-| `MovingAverage.sol`                    | 300           | [MovingAverage.sol]() |
-| `Permissions.sol`                      | 117           | [Permissions.sol]() |
-| `PoolTransferVerification.sol`         | 92            | [PoolTransferVerification.sol]() |
-| `RewardReinvestor.sol`                 | 119           | [RewardReinvestor.sol]() |
-| `RewardSystem/RewardDistributor.sol`   | 250           | [RewardDistributor.sol]() |
-| `RewardSystem/RewardOverflowPool.sol`  | 58            | [RewardOverflowPool.sol]() |
-| `RewardSystem/RewardThrottle.sol`      | 228           | [RewardThrottle.sol]() |
-| `StabilizerNode.sol`                   | 421           | [StabilizerNode.sol]() |
-| `SwingTrader.sol`                      | 129           | [SwingTrader.sol]() |
-| `TransferService.sol`                  | 69            | [TransferService.sol]() |
+| `AbstractRewardMine.sol`               | 185           | [AbstractRewardMine.sol](src/contracts/AbstractRewardMine.sol) |
+| `AuctionBurnReserveSkew.sol`           | 139           | [AuctionBurnReserveSkew.sol](src/contracts/AuctionBurnReserveSkew.sol) |
+| `AuctionEscapeHatch.sol`               | 174           | [AuctionEscapeHatch.sol](src/contracts/AuctionEscapeHatch.sol) |
+| `AuctionParticipant.sol`               | 95            | [AuctionParticipant.sol](src/contracts/AuctionParticipant.sol) |
+| `AuctionPool.sol`                      | 123           | [AuctionPool.sol](src/contracts/AuctionPool.sol) |
+| `Auction.sol`                          | 750           | [Auction.sol](src/contracts/Auction.sol) |
+| `Bonding.sol`                          | 252           | [Bonding.sol](src/contracts/Bonding.sol) |
+| `DAO.sol`                              | 90            | [DAO.sol](src/contracts/DAO.sol) |
+| `DexHandlers/UniswapHandler.sol`       | 242           | [UniswapHandler.sol](src/contracts/DexHandlers/UniswapHandler.sol) |
+| `ERC20VestedMine.sol`                  | 80            | [ERC20VestedMine.sol](src/contracts/ERC20VestedMine.sol) |
+| `LiquidityExtension.sol`               | 125           | [LiquidityExtension.sol](src/contracts/LiquidityExtension.sol) |
+| `MaltDataLab.sol`                      | 222           | [MaltDataLab.sol](src/contracts/MaltDataLab.sol) |
+| `Malt.sol`                             | 53            | [Malt.sol](src/contracts/Malt.sol) |
+| `MiningService.sol`                    | 139           | [MiningService.sol](src/contracts/MiningService.sol) |
+| `MovingAverage.sol`                    | 300           | [MovingAverage.sol](src/contracts/MovingAverage.sol) |
+| `Permissions.sol`                      | 117           | [Permissions.sol](src/contracts/Permissions.sol) |
+| `PoolTransferVerification.sol`         | 92            | [PoolTransferVerification.sol](src/contracts/PoolTransferVerification.sol) |
+| `RewardReinvestor.sol`                 | 119           | [RewardReinvestor.sol](src/contracts/RewardReinvestor.sol) |
+| `RewardSystem/RewardDistributor.sol`   | 250           | [RewardDistributor.sol](src/contracts/RewardSystem/RewardDistributor.sol) |
+| `RewardSystem/RewardOverflowPool.sol`  | 58            | [RewardOverflowPool.sol](src/contracts/RewardSystem/RewardOverflowPool.sol) |
+| `RewardSystem/RewardThrottle.sol`      | 228           | [RewardThrottle.sol](src/contracts/RewardSystem/RewardThrottle.sol) |
+| `StabilizerNode.sol`                   | 421           | [StabilizerNode.sol](src/contracts/StabilizerNode.sol) |
+| `SwingTrader.sol`                      | 129           | [SwingTrader.sol](src/contracts/SwingTrader.sol) |
+| `TransferService.sol`                  | 69            | [TransferService.sol](src/contracts/TransferService.sol) |
 | **Total**                              | **4452**      |  |
 
 *All lines of code were counted using `cloc` tool on linux. Only lines of code are counted, not blanks / comments etc*
@@ -394,7 +394,7 @@ The new system developed is something we call "Focal Vesting". This is a process
 For example, choosing a focal length of 24 hours means any reward created between time 0 and time 24 hours will vest 1 focal length later (24 hours after the 24 hour mark = 48 hours). This means rewards created in the first block of hour 1 vest over 48 hours and rewards generated in the final block of hour 24 will vest over 24 hours instead. Any reward generated after the first 24 hours are now into the next focal period and will vest at the second focal point (at 72 hours).
 
 ![Focal Vesting Diagram](assets/focal_vesting.jpeg)
-![Focal Vesting Diagram](assets/focal_vesting_2.jpeg)
+![Focal Vesting Diagram](assets/focal_vesting2.jpeg)
 
 ### RewardDistributor + ERC20VestedMine
 The `RewardDistributor` is in charge of vesting rewards but it has no knowledge of bonded users. It simply accepts capital then releases it to `ERC20VestedMine` when it vests.
