@@ -409,6 +409,7 @@ The `ERC20VestedMine` works in tandem with the `RewardDistributor`. Declared rew
 This completely isolates concerns in a clean way that is easy to work with. Vesting just works but neither contract has to know about more than it needs to.
 
 ## Known Issues / trade offs
+* `RewardDistributor` tests are failing. This is due to the tests themselves. They have not been correctly updated since a small change was made to the contract that broke the tests.
 * Rolling our own oracles is likely more complexity than required and creates more attack surface. For initial launch this is done such that we have more control around lengths of moving averages etc and have flexibility to iterate around it. It is also more practical than orchestrating custom oracle sources for a project before it launches. Ultimately, using better oracles (like chainlink) is the longer term plan. At that point we can continue using the `MaltDataLab` api and just use chainlink (or any other oracle provider) as a backend instead of our `MovingAverage` contracts.
 * RewardReinvestor makes some crude assumptions and may fail on edge cases.
 * The implementation of `RewardThrottle` means that if no rewards come in for 24 hours then the next reward is throttled to 0. This system can be improved to make better use of the overflow runway in times of lower demand.
