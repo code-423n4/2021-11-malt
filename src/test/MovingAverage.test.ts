@@ -3,7 +3,7 @@ import { ethers, waffle } from "hardhat";
 import { Signer } from "ethers";
 import { MovingAverage } from "../type/MovingAverage";
 import { ContractFactory, constants, utils, Contract, BigNumber } from 'ethers';
-import { hardhatSnapshot, hardhatRevert, oracleAdvancerFactory, setNextBlockTime, increaseTime } from "./helpers";
+import { hardhatSnapshot, hardhatRevert, setNextBlockTime, increaseTime } from "./helpers";
 
 const { deployMockContract } = waffle;
 

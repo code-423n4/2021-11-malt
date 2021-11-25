@@ -5,7 +5,7 @@ import { Timelock } from "../type/Timelock";
 import { ContractFactory, constants, utils, Contract, BigNumber } from 'ethers';
 // @ts-ignore
 import { time } from "@openzeppelin/test-helpers";
-import { hardhatSnapshot, hardhatRevert, oracleAdvancerFactory, increaseTime } from "./helpers";
+import { hardhatSnapshot, hardhatRevert, increaseTime } from "./helpers";
 
 const { deployMockContract } = waffle;
 
