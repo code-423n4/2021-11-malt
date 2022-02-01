@@ -1,5 +1,5 @@
 # Malt Finance contest details
-- $76,000 USDC main award pot
+- $64,000 USDC main award pot
 - $4,000 USDC gas optimization award pot
 - Join [C4 Discord](https://discord.gg/code4rena) to register
 - Submit findings [using the C4 form](https://code4rena.com/contests/2021-11-malt-finance-contest/submit)
