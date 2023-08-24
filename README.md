@@ -24,15 +24,15 @@ Discord handles to contact with questions about the protocol and their timezones
 * [Known Issues / trade offs](#known-issues--trade-offs)
 
 ## High level overview of the Malt protocol
-The goal of Malt is to maintain the price of the Malt token at $1 per Malt.
+The goal of Malt is to maintain the price of the Malt token at &#36;1 per Malt.
 
-When the price of Malt rises to above $1 per coin the protocol mints brand new Malt and sells it. That sell pressure drops the price back to $1. When the protocol sells the Malt it receives other tokens (DAI for example) which are all profit for the protocol as the protocol simply minted the coins it sold.
+When the price of Malt rises to above &#36;1 per coin the protocol mints brand new Malt and sells it. That sell pressure drops the price back to &#36;1. When the protocol sells the Malt it receives other tokens (DAI for example) which are all profit for the protocol as the protocol simply minted the coins it sold.
 
 A portion of the profit received is simply redistributed to everyone who is invested in Malt (liquidity providers). The rest of the profit is held back by the protocol.
 
-When Malt's price falls below $1, then the profit that was held back from the mechanism explained above is used to buy back Malt to increase the price back to $1 again.
+When Malt's price falls below &#36;1, then the profit that was held back from the mechanism explained above is used to buy back Malt to increase the price back to &#36;1 again.
 
-If the retained profit is not enough to return the price to $1 then an auction is triggered where any user can commit money to the protocol to help return the price to $1. In return for their commitment, these users receive "Arbitrage Tokens" which carry a premium above their commitment which is redeemable in the future for $1. Concretely, if a user commits $100 to help they may receive 120 Arbitrage tokens which can be redeemed for $1 each in the future.
+If the retained profit is not enough to return the price to &#36;1 then an auction is triggered where any user can commit money to the protocol to help return the price to &#36;1. In return for their commitment, these users receive "Arbitrage Tokens" which carry a premium above their commitment which is redeemable in the future for &#36;1. Concretely, if a user commits &#36;100 to help they may receive 120 Arbitrage tokens which can be redeemed for &#36;1 each in the future.
 
 ## Testnet
 [Have a look at the protocol in action on the polygon mumbai testnet](https://matictestnet.stablemalt.finance/faucet)
@@ -96,7 +96,7 @@ When declared and released are the same, it functions as a straightforward liqui
 
 In the case of vesting rewards it is desired that a user is only eligible for rewards that where declared (but not vested) before that user bonded their LP. Eg.
   1. User 1 Bonds 100 LP
-  2. $100 of rewards are declared
+  2. &#36;100 of rewards are declared
   3. 1 minute later User 2 bonds 100 LP
 
 In this situation, Users 1 and 2 both own 50% of the bonded LP, however User 1 should own all of the declared reward. Although almost none of that reward is vested yet (only 1 minute into the vesting period). The contract uses what we call `stakePadding` (discussed in more detail below) to keep track of this ownership.
@@ -123,9 +123,9 @@ To mitigate the binary nature of this, the `AuctionEscapeHatch` contract allows 
 
 When a user purchases arb tokens, their capital is used to buy Malt. The price paid for the Malt is tracked. This price paid is the set point by which early exists are judged (as opposed to the dutch auction price paid).
 
-If the current Malt market price is below the Malt price paid by a user in an auction then the user can exit at the loss (ie their Malt purchase price was $0.90 and the current market price is $0.80, then they can accept a $0.10 loss per arb token).
+If the current Malt market price is below the Malt price paid by a user in an auction then the user can exit at the loss (ie their Malt purchase price was &#36;0.90 and the current market price is &#36;0.80, then they can accept a &#36;0.10 loss per arb token).
 
-If the current Malt market price is above their Malt purchase price they can exit at 20% (configurable) of the trade's profit. IE if they got in at a Malt price of $0.8 and the current price is $0.9 then they can exit at $0.82.
+If the current Malt market price is above their Malt purchase price they can exit at 20% (configurable) of the trade's profit. IE if they got in at a Malt price of &#36;0.8 and the current price is &#36;0.9 then they can exit at &#36;0.82.
 
 This system is meant to encourage users to hold for the full profit while giving them the flexibility to control their risk a little better than a pure binary option.
 
@@ -168,7 +168,7 @@ A helper contract that allows other contracts to easily interact with UniswapV2 
 The core reward source for bonded LPs. It inherits from `AbstractRewardMine` and works closely with the `RewardDistributor` to implement the reward vesting seen in Malt. More on this interaction below.
 
 ### LiquidityExtension
-The core goal of this contract is to facilitate the auction premium without net supply inflation after the premium has been paid off. The amount of "arb tokens" the user receives from the auction is determined by the final price of the auction (reached either at the end of the allotted time or when the auction is fully subscribed). Each arb token is worth $1 (in DAI initially) when Malt is back to peg and above peg profit pays down the tokens.
+The core goal of this contract is to facilitate the auction premium without net supply inflation after the premium has been paid off. The amount of "arb tokens" the user receives from the auction is determined by the final price of the auction (reached either at the end of the allotted time or when the auction is fully subscribed). Each arb token is worth &#36;1 (in DAI initially) when Malt is back to peg and above peg profit pays down the tokens.
 This process implies that each arb token is worth 1 Malt when at peg. During the auction, all capital committed to the auction is used to buy Malt from the AMM and burn it. At the end of the auction it is known how many arb tokens have been created and how much Malt was burned. If less Malt has been burned than arb tokens created then that implies a required supply growth to pay down the tokens.
 Therefore, the protocol will endeavour to burn at least as much Malt as it creates arb tokens. This is the job of the liquidity extension. It can also choose burn more (which is where the `AuctionBurnReserveSkew` contract comes in) to see a net contraction of supply.
 The contract contains capital and a desired `minReserveRatio`, which is a ratio of capital in the contract against the Malt in the AMM pool the liquidity extension is paired with.
@@ -307,39 +307,39 @@ The point of the dutch auction is to increase how attractive speculating on Malt
 By making use of a separate dutch auction mechanism, Malt allows for price discovery on the risk premium to happen independently of the Malt market price. The duration of each auction can be adjusted as required. This realigns the incentives and allows users to capture a larger premium without requiring a larger deviation from peg.
 
 ### Liquidity Extension (LE)
-Liquidity extension exists to facilitate offering a premium in the dutch auction (a delta between auction price and AMM price). For example if the average purchase price of Malt burned during an auction is $0.90 and the final price of the dutch auction is $0.80 then that suggests a $0.10 premium.
+Liquidity extension exists to facilitate offering a premium in the dutch auction (a delta between auction price and AMM price). For example if the average purchase price of Malt burned during an auction is &#36;0.90 and the final price of the dutch auction is &#36;0.80 then that suggests a &#36;0.10 premium.
 
-What that premium implies is that for every arb token purchased less than 1 Malt was burned. Each arb token is redeemable for $1 and the redemption is covered by the above peg mechanism of minting and selling Malt. Worst case, that means 1 Malt must be minted to cover a single arb token. If the protocol is burning less than 1 Malt to create an arb token and minting 1 to redeem it then there is net supply growth through the entire end to end auction process. This is undesirable.
+What that premium implies is that for every arb token purchased less than 1 Malt was burned. Each arb token is redeemable for &#36;1 and the redemption is covered by the above peg mechanism of minting and selling Malt. Worst case, that means 1 Malt must be minted to cover a single arb token. If the protocol is burning less than 1 Malt to create an arb token and minting 1 to redeem it then there is net supply growth through the entire end to end auction process. This is undesirable.
 
 This is where liquidity extension steps in and will attempt to at the very least cover the premium such that the auction burns at least 1 Malt for every arb token created. The liquidity extension can choose to burn more if it has budget - this will realise a real net supply contraction through the auction. It can also choose to keep the auction net neutral to supply and instead retain capital.
 
 There are constraints limiting exactly how much capital the liquidity extension is allowed to use on any given auction.
 
-That constraint is related to the liquidity extensions "reserve ratio" which is the ratio of capital in the LE against the amount of Malt in the AMM pool (actually implied amount of Malt in the pool given current value of k and the target price ie how much Malt is in the pool if the price is $1 and the value of k is X?)
+That constraint is related to the liquidity extensions "reserve ratio" which is the ratio of capital in the LE against the amount of Malt in the AMM pool (actually implied amount of Malt in the pool given current value of k and the target price ie how much Malt is in the pool if the price is &#36;1 and the value of k is X?)
 
-If LE reserve ratio is 40% then LE has $0.40 for every Malt that should be in the pool if the pool was at peg. Therefore, the LE should refuse to spend more than $0.40 to burn a single Malt. If less than $0.40 is used to burn Malt then the global collateralization of Malt improves. Concretely, 100 Malt in pool and 40 DAI in LE. Say LE uses $0.20 to burn 1 Malt. LE dropped by 0.5% while Malt supply dropped by 1%. This difference in the rate of change of Malt supply vs LE ensures the process is sustainable.
+If LE reserve ratio is 40% then LE has &#36;0.40 for every Malt that should be in the pool if the pool was at peg. Therefore, the LE should refuse to spend more than &#36;0.40 to burn a single Malt. If less than &#36;0.40 is used to burn Malt then the global collateralization of Malt improves. Concretely, 100 Malt in pool and 40 DAI in LE. Say LE uses &#36;0.20 to burn 1 Malt. LE dropped by 0.5% while Malt supply dropped by 1%. This difference in the rate of change of Malt supply vs LE ensures the process is sustainable.
 
 ### Auction Pricing
-The constraints on LE capital usage imply pricing boundaries on the auction. If LE can only spend $0.40 to burn a single Malt then the largest premium that can be offered is $0.40. The premium is the delta between market price and the dutch auction. In this case a final auction price above $0.60 will always be acceptable as the market price should never go above $1 during an auction (recovery mode avoids user behaviour overshooting).
+The constraints on LE capital usage imply pricing boundaries on the auction. If LE can only spend &#36;0.40 to burn a single Malt then the largest premium that can be offered is &#36;0.40. The premium is the delta between market price and the dutch auction. In this case a final auction price above &#36;0.60 will always be acceptable as the market price should never go above &#36;1 during an auction (recovery mode avoids user behaviour overshooting).
 
-Final auction prices below $0.6 are acceptable only if they are less than $0.40 away from average Malt purchase price.
+Final auction prices below &#36;0.6 are acceptable only if they are less than &#36;0.40 away from average Malt purchase price.
 
 ### Stake Padding
 Stake padding is a mathematical construct that allows for simple accounting of reward allocation for each LP. The padding itself is just another value attached to each user that is use in conjunction with their ownership % of total LP and declared rewards.
 
 Here is a concrete example:
 1. User 1 bonds 100LP
-2. $100 of rewards are declared
+2. &#36;100 of rewards are declared
 3. User 2 bonds 100LP
 
-At this point we have two users that each own a 50% share of the LP while User 1 should have 100% share of the rewards. User 2 isn't eligible for any rewards as the $100 was declared before they bonded.
+At this point we have two users that each own a 50% share of the LP while User 1 should have 100% share of the rewards. User 2 isn't eligible for any rewards as the &#36;100 was declared before they bonded.
 
 We need a way of reconciling this. The solution is to introduce another value called "Stake Padding". This stake padding given to a user will be sized such that their allocated rewards + their stake padding is the same proportion of the global total stake padding + globally declared rewards as their share of LP is to the entire bonded LP.
 
 Going back to the above example:
 1. User 1 bonds 100LP and is (arbitrarily) assigned 100 in stake padding.
   a. Let's call total declared reward + total stake padding "fullyPaddedReward". Right now that equals 100.
-2. $100 of rewards are declared
+2. &#36;100 of rewards are declared
   a. fullyPaddedReward now equals 200. (100 padding + 100 reward).
 3. User 2 bonds 100LP. At this point user 2 owns 50% of LP. They need to be given some stake padding such that their share of fullyPaddedReward is also 50%.
   a. User 2 given 200 stake padding. fullyPaddedReward is now 400 (200 user 2 padding + 100 user 1 padding + 100 reward) and user 2 owns 200 of it, which is the desired 50%.
@@ -362,7 +362,7 @@ Calculate user 1 reward given:
 3. User 1's stake padding is known to be 100.
   a. Therefore, their share of 200 minus their stake padding of 100 leaves their reward to be 100. We know this is correct based on the previous example.
 
-Now assume another $200 of rewards is dropped in (after user 2 bonded their 100 LP).
+Now assume another &#36;200 of rewards is dropped in (after user 2 bonded their 100 LP).
 
 `fullyPaddedReward` is now 600: the previous value of 400 + the new 200 of rewards. Stake padding is unchanged as no bonding / unbonding has occurred.
 
